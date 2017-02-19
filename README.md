@@ -21,5 +21,8 @@ Ce module servira principalement à la gestion de la structure évènementielle 
 ### Touch Designer (Jean-Christophe et Hugo)
 Ce module servira principalement à la détection de la kinect et à l'interpretation des donné de cette dernière. Les résultats seront envoyer par Osc à Unity
 
+### Prototype Test Room (Jean-Christophe)
+Ceci est un environnement pour tester visuel, programmation et rendu sur l'écran de la salle Tokio sans affecté le projet. Ce projet à toujours un build d'actif pour le tester à tout momment.
+
 ## 4_Final
 Dossier contenant le projet final avec un script d'auto exécution des différents modules.
