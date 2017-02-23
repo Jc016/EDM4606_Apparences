@@ -21,12 +21,12 @@ Platform assembly: C:\Users\admin\Documents\GitHub\EDM4606_Apparences\3_Project\
 Loading C:\Users\admin\Documents\GitHub\EDM4606_Apparences\3_Project\PrototypeTestRoom\testRoom\runTestRoom_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\admin\Documents\GitHub\EDM4606_Apparences\3_Project\PrototypeTestRoom\testRoom\runTestRoom_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\admin\Documents\GitHub\EDM4606_Apparences\3_Project\PrototypeTestRoom\testRoom\runTestRoom_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.030 seconds
+- Completed reload, in  0.032 seconds
 Platform assembly: C:\Users\admin\Documents\GitHub\EDM4606_Apparences\3_Project\PrototypeTestRoom\testRoom\runTestRoom_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\admin\Documents\GitHub\EDM4606_Apparences\3_Project\PrototypeTestRoom\testRoom\runTestRoom_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
-desktop: 1920x1080 60Hz; virtual: 7680x1080 at -3840,0
+desktop: 1920x1080 60Hz; virtual: 7680x1080 at 0,0
 <RI> Initialized touch support.
 Cooking::cookConvexMesh: user-provided hull must have less than 256 vertices!
  
@@ -36,7 +36,7 @@ Failed to create Convex Mesh from source mesh "Cylinder". Source mesh is likely 
  
 (Filename:  Line: 54)
 
-UnloadTime: 1.082485 ms
+UnloadTime: 1.110483 ms
 Application paused : False
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -46,9 +46,9 @@ Opening OSC listener on port 15001
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 3 worker threads for Enlighten.
-  Thread -> id: 1074 -> priority: 1 
-  Thread -> id: 18e0 -> priority: 1 
-  Thread -> id: edc -> priority: 1 
+  Thread -> id: 1f20 -> priority: 1 
+  Thread -> id: 2a90 -> priority: 1 
+  Thread -> id: 2a3c -> priority: 1 
 Closed OSC listener
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
