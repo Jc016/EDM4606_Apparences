@@ -18,12 +18,42 @@ public class OscCursorController : MonoBehaviour {
 
         osc.SetAddressHandler("/pointerX", OnReceivePointerX);
         osc.SetAddressHandler("/pointerY", OnReceivePointerY);
+        osc.SetAddressHandler("/hand_closed", OnReceiveHandStatus);
+        osc.SetAddressHandler("/stand_sit", OnBodyStanceChange);
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    void OnBodyStanceChange(OscMessage  message)
+    {
+        float bodyYSpeed = message.GetFloat(0);
+        if(bodyYSpeed > 0.3f)
+        {
+            Physics.gravity = new Vector3(0, 0.2f, 0);
+            Debug.Log("Standing Up: " + bodyYSpeed);
+        }
+        else if (bodyYSpeed < -0.3f)
+        {
+            Physics.gravity = new Vector3(0, -9.8f, 0);
+            Debug.Log("Sitting: " + bodyYSpeed);
+        }
+    }
+
+    void OnReceiveHandStatus(OscMessage message)
+    {
+        ObjectGrabberController ogc;
+        if (IsObjectGrabberSet(out ogc))
+            ogc.setGrabState(message.GetFloat(0) == 1);
+    }
+
+    bool IsObjectGrabberSet(out ObjectGrabberController refOGC)
+    {
+        refOGC = GetComponent<ObjectGrabberController>();
+        return refOGC  != null;
+    }
 
     void OnReceivePointerX(OscMessage message) {
         pointerX = message.GetFloat(0);
@@ -38,15 +68,15 @@ public class OscCursorController : MonoBehaviour {
 
     void SetPointerPosition()
     {
+        ObjectGrabberController ogc;
         cursorTransform.position = new Vector3(
-            canvasTransform.rect.width * pointerX,
-            canvasTransform.rect.height * pointerY
+           canvasTransform.rect.width * pointerX,
+           canvasTransform.rect.height * pointerY
             );
 
-        if(GetComponent<ObjectGrabberController>() != null)
-        {
-            GetComponent<ObjectGrabberController>().updateGrabberWithPosition(cursorTransform.position);
-        }
+        if (IsObjectGrabberSet(out ogc))
+            ogc.updateGrabberWithPosition(cursorTransform.position);
+        
         
     }
 }
