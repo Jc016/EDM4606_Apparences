@@ -33,7 +33,8 @@ public class ObjectGrabberController : MonoBehaviour {
             {
 
                 rigidbody.useGravity = !isGrabbingState;
-               // rigidbody.isKinematic = isGrabbingState;
+
+                 
             }
 
 
@@ -75,7 +76,7 @@ public class ObjectGrabberController : MonoBehaviour {
 
             if (hitGameObject != null && hitGameObject.tag == "Interactive")
             {
-                iTween.ShakePosition(hitGameObject, new Vector3(0.07f, 0, 0), 0.1f);
+                iTween.ShakePosition(hitGameObject, new Vector3(0.04f, 0, 0), 0.1f);
             }
             if (hitGameObject == null || hitGameObject != currentSelectedObject)
             {
