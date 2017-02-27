@@ -32,12 +32,12 @@ public class OscCursorController : MonoBehaviour {
         float bodyYSpeed = message.GetFloat(0);
         if(bodyYSpeed > 0.3f)
         {
-            Physics.gravity = new Vector3(0, 0.2f, 0);
+            Physics.gravity = new Vector3(0, 0.3f, 0);
             Debug.Log("Standing Up: " + bodyYSpeed);
         }
         else if (bodyYSpeed < -0.3f)
         {
-            Physics.gravity = new Vector3(0, -9.8f, 0);
+            Physics.gravity = new Vector3(0, -160.0f, 0);
             Debug.Log("Sitting: " + bodyYSpeed);
         }
     }
