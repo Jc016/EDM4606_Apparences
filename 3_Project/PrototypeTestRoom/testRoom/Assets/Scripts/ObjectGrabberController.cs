@@ -8,6 +8,7 @@ public class ObjectGrabberController : MonoBehaviour {
     private bool isGrabbing;
     public float forceThrow = 1.0f;
     private Vector3 prevGrabbedObjectPos;
+    private Vector3 cursorLastPosition = new Vector3();
 
 	// Use this for initialization
 	void Start () {
@@ -32,29 +33,26 @@ public class ObjectGrabberController : MonoBehaviour {
             {
 
                 rigidbody.useGravity = !isGrabbingState;
-                rigidbody.isKinematic = isGrabbingState;
+               // rigidbody.isKinematic = isGrabbingState;
             }
 
-            if (isGrabbing)
-            {
-                updateLastPos();
-            }
-            else
-            {
-                Vector3 releaseForce = currentSelectedObject.transform.position - prevGrabbedObjectPos;
-                releaseForce.Normalize();
-                releaseForce= releaseForce * forceThrow;
-                currentSelectedObject.GetComponent<Rigidbody>().AddForce(releaseForce);
-                currentSelectedObject.GetComponent<Renderer>().material.color = Color.black;
-                deselectObject();
-                
-            }
+
+        
         }
     }
 
-    private void updateLastPos()
+    private void updateLastPos(Vector3 position)
     {
-        prevGrabbedObjectPos = currentSelectedObject.transform.position;
+        cursorLastPosition = position;
+    }
+
+
+    private Vector3 calculateForceMoveObjectFactor(Vector3 position)
+    {
+        Vector3 objectMoveForce = position - cursorLastPosition;
+        objectMoveForce.Normalize();
+        objectMoveForce *= forceThrow;
+        return objectMoveForce;
     }
 
     public void updateGrabberWithPosition(Vector3 position)
@@ -64,15 +62,11 @@ public class ObjectGrabberController : MonoBehaviour {
 
         if (isGrabbing)
         {
-            Debug.Log("Moving  Object");
-            updateLastPos();
-            Vector3 movingPosition = ray.GetPoint(Mathf.Abs(currentSelectedObject.transform.position.z));
+            Vector3 moveForce = calculateForceMoveObjectFactor(position);
+            currentSelectedObject.GetComponent<Rigidbody>().AddForce(moveForce);
+            Debug.Log("Moving  Object: " + moveForce.ToString());
 
-            currentSelectedObject.transform.position = new Vector3(
-                movingPosition.x,
-                movingPosition.y,
-                currentSelectedObject.transform.position.z
-                );
+            updateLastPos(position);
                 
         }
         else if (Physics.Raycast(ray, out hitInfo))
