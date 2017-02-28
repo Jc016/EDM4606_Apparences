@@ -88,10 +88,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\FPSLimiter.cs" />
+    <Compile Include="Assets\MouseObjectController.cs" />
     <Compile Include="Assets\Scripts\CameraOSCController.cs" />
+    <Compile Include="Assets\Scripts\DisplayScript.cs" />
     <Compile Include="Assets\Scripts\OSC\OSC.cs" />
+    <Compile Include="Assets\Scripts\ObjectGrabberController.cs" />
+    <Compile Include="Assets\Scripts\OscCursorController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
