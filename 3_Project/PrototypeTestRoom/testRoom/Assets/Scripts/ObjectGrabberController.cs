@@ -2,44 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectGrabberController : MonoBehaviour {
+public class ObjectGrabberController : MonoBehaviour
+{
 
-    private GameObject currentSelectedObject;
+    public GameObject currentSelectedObject;
     private bool isGrabbing;
-    public float forceThrow = 1.0f;
+    public float minForceThrow = 1.0f;
+    public float maxForceThrow = 4.0f;
+    public float currentThrowForce = 1.0f;
+
+    public float forceIncrement = 1.1f;
     private Vector3 prevGrabbedObjectPos;
     private Vector3 cursorLastPosition = new Vector3();
+    private Color objectInitialColor = Color.black;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         isGrabbing = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
         prevGrabbedObjectPos = new Vector3(0, 0, 0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+
+    void incrementForceOnThrow()
+    {
+        if (isGrabbing)
+        {
+            currentThrowForce += forceIncrement * Time.deltaTime;
+            Mathf.Clamp(currentThrowForce, minForceThrow, maxForceThrow);
+        }
     }
 
     public void setGrabState(bool isGrabbingState)
     {
-        if(currentSelectedObject != null && isGrabbingState != isGrabbing)
-        {
-            Debug.Log("isGrabbing: " + isGrabbingState);
-            isGrabbing = isGrabbingState;
-            Rigidbody rigidbody = currentSelectedObject.GetComponent<Rigidbody>();
 
-            if(rigidbody != null)
+
+        if (currentSelectedObject != null)
+        {
+            if (isGrabbingState != isGrabbing)
             {
 
-                rigidbody.useGravity = !isGrabbingState;
+                isGrabbing = isGrabbingState;
+                Rigidbody rigidbody = currentSelectedObject.GetComponent<Rigidbody>();
 
-                 
+                if (rigidbody != null)
+                {
+                    rigidbody.useGravity = !isGrabbingState;
+                }
+
+
             }
 
 
-        
+
         }
+
+
+        currentThrowForce = minForceThrow;
+
+
     }
 
     private void updateLastPos(Vector3 position)
@@ -48,11 +74,13 @@ public class ObjectGrabberController : MonoBehaviour {
     }
 
 
+
     private Vector3 calculateForceMoveObjectFactor(Vector3 position)
     {
-        Vector3 objectMoveForce = position - cursorLastPosition;
+        Vector3 objectMoveForce = position / Time.deltaTime;
         objectMoveForce.Normalize();
-        objectMoveForce *= forceThrow;
+        objectMoveForce *= currentThrowForce;
+        Debug.Log(objectMoveForce);
         return objectMoveForce;
     }
 
@@ -64,11 +92,11 @@ public class ObjectGrabberController : MonoBehaviour {
         if (isGrabbing)
         {
             Vector3 moveForce = calculateForceMoveObjectFactor(position);
+            incrementForceOnThrow();
             currentSelectedObject.GetComponent<Rigidbody>().AddForce(moveForce);
-            Debug.Log("Moving  Object: " + moveForce.ToString());
-
+           
             updateLastPos(position);
-                
+
         }
         else if (Physics.Raycast(ray, out hitInfo))
         {
@@ -83,28 +111,32 @@ public class ObjectGrabberController : MonoBehaviour {
                 setActiveGrabbedObject(hitGameObject);
 
             }
-        }    
+        }
 
     }
 
     private void setActiveGrabbedObject(GameObject gameObject)
     {
-  
-        if(gameObject.tag == "Interactive")
+        deselectObject();
+        if (gameObject.tag == "Interactive")
         {
-            deselectObject();
+
             currentSelectedObject = gameObject;
+            objectInitialColor = currentSelectedObject.GetComponent<Renderer>().material.color;
+            currentSelectedObject.GetComponent<Renderer>().material.color = Color.red;
+
         }
 
     }
 
     private void deselectObject()
     {
-        if(currentSelectedObject != null)
+        if (currentSelectedObject != null)
         {
+            currentSelectedObject.GetComponent<Renderer>().material.color = objectInitialColor;
             currentSelectedObject = null;
         }
-      
+
     }
 
 
