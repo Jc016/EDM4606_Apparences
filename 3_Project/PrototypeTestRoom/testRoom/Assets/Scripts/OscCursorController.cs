@@ -54,7 +54,7 @@ public class OscCursorController : MonoBehaviour
         float bodyYSpeed = message.GetFloat(0);
         if (bodyYSpeed == 0)
         {
-            Physics.gravity = new Vector3(0, 0.2f, 0);
+            Physics.gravity = new Vector3(0, 0.4f, 0);
             Camera.main.GetComponent<MotionBlur>().blurAmount = 1.0f;
 
         }
