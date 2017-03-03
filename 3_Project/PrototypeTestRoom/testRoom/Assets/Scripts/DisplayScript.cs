@@ -6,7 +6,7 @@ public class DisplayScript : MonoBehaviour
     void Awake()
     {
         Screen.SetResolution(3840, 1080, false);
-        Display.main.SetRenderingResolution(3840, 1080);
+        Display.main.SetRenderingResolution(7680, 2160);
     }
     // Use this for initialization
     void Start()

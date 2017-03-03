@@ -51,7 +51,8 @@
      <Compile Include="Assets\Scripts\CameraOSCController.cs" />
      <Compile Include="Assets\Scripts\DisplayScript.cs" />
      <Compile Include="Assets\Scripts\OSC\OSC.cs" />
-     <Compile Include="Assets\Scripts\ObjectGrabberController.cs" />
+     <Compile Include="Assets\Scripts\ObjectGrabberControllerLeft.cs" />
+     <Compile Include="Assets\Scripts\ObjectGrabberControllerRight.cs" />
      <Compile Include="Assets\Scripts\OscCursorController.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />

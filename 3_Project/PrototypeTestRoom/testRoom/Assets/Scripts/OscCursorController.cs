@@ -2,28 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.ImageEffects;
 
 public class OscCursorController : MonoBehaviour
 {
 
 
     public OSC osc;
-    public float pointerX, pointerY, speedX, speedY;
-    public RectTransform cursorTransform;
-    public RectTransform canvasTransform;
+    public float pointerXLeft, pointerYLeft, speedXLeft, speedYLeft;
+    public float pointerXRight, pointerYRight, speedXRight, speedYRight;
+    public RectTransform canvasTransformLeft, canvasTransformRight;
+    public RectTransform cursorTransformLeft;
+    public RectTransform cursorTransformRight;
 
     // Use this for initialization
     void Start()
     {
-        pointerX = 0;
-        pointerY = 0;
+        pointerXLeft = 0;
+        pointerYLeft = 0;
 
-        osc.SetAddressHandler("/pointerX", OnReceivePointerX);
-        osc.SetAddressHandler("/pointerY", OnReceivePointerY);
-        osc.SetAddressHandler("/speedX", OnReceiveSpeedX);
-        osc.SetAddressHandler("/speedY", OnReceiveSpeedY);
-        osc.SetAddressHandler("/pointerY", OnReceivePointerY);
-        osc.SetAddressHandler("/hand_closed", OnReceiveHandStatus);
+        pointerXRight = 0;
+        pointerYRight = 0;
+
+        osc.SetAddressHandler("/pointerX:left", OnReceivepointerXLeft);
+        osc.SetAddressHandler("/pointerY:left", OnReceivepointerYLeft);
+        osc.SetAddressHandler("/speedX:left", OnReceivespeedXLeft);
+        osc.SetAddressHandler("/speedY:left", OnReceivespeedYLeft);
+        osc.SetAddressHandler("/pointerY:left", OnReceivepointerYLeft);
+        osc.SetAddressHandler("/hand_closed:left", OnReceiveHandStatusLeft);
+
+        osc.SetAddressHandler("/pointerX:right", OnReceivepointerXRight);
+        osc.SetAddressHandler("/pointerY:right", OnReceivepointerYRight);
+        osc.SetAddressHandler("/speedX:right", OnReceivespeedXRight);
+        osc.SetAddressHandler("/speedY:right", OnReceivespeedYRight);
+        osc.SetAddressHandler("/pointerY:right", OnReceivepointerYRight);
+        osc.SetAddressHandler("/hand_closed:right", OnReceiveHandStatusRight);
+
         osc.SetAddressHandler("/stand_sit", OnBodyStanceChange);
 
     }
@@ -31,7 +45,8 @@ public class OscCursorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetPointerPosition();
+        SetPointerPositionLeft();
+        SetPointerPositionRight();
     }
 
     void OnBodyStanceChange(OscMessage message)
@@ -39,70 +54,124 @@ public class OscCursorController : MonoBehaviour
         float bodyYSpeed = message.GetFloat(0);
         if (bodyYSpeed == 0)
         {
-            Physics.gravity = new Vector3(0, 0.5f, 0);
+            Physics.gravity = new Vector3(0, 0.2f, 0);
+            Camera.main.GetComponent<MotionBlur>().blurAmount = 1.0f;
 
         }
         else
         {
-            Physics.gravity = new Vector3(0, -160.0f, 0);
+            Physics.gravity = new Vector3(0, -200.0f, 0);
+            Camera.main.GetComponent<MotionBlur>().blurAmount = 0f;
 
         }
     }
 
-    void OnReceiveHandStatus(OscMessage message)
+    void OnReceiveHandStatusLeft(OscMessage message)
     {
-        ObjectGrabberController ogc;
+        ObjectGrabberControllerLeft ogc;
         float handStatus = message.GetFloat(0);
-        if (IsObjectGrabberSet(out ogc))
+        if (IsObjectGrabberLeftSet(out ogc))
         {
             ogc.setGrabState(handStatus == 1);
-            cursorTransform.gameObject.GetComponent<Image>().enabled = handStatus == 0 || ogc.currentSelectedObject == null;
+            cursorTransformLeft.gameObject.GetComponent<Image>().enabled = handStatus == 0 || ogc.currentSelectedObject == null;
         }
-
-
-
-
     }
 
-    bool IsObjectGrabberSet(out ObjectGrabberController refOGC)
+    bool IsObjectGrabberLeftSet(out ObjectGrabberControllerLeft refOGC)
     {
-        refOGC = GetComponent<ObjectGrabberController>();
+        refOGC = GetComponent<ObjectGrabberControllerLeft>();
         return refOGC != null;
     }
 
-    void OnReceivePointerX(OscMessage message)
+    void OnReceivepointerXLeft(OscMessage message)
     {
-        pointerX = message.GetFloat(0);
+        pointerXLeft = message.GetFloat(0);
     }
 
-    void OnReceivePointerY(OscMessage message)
+    void OnReceivepointerYLeft(OscMessage message)
     {
-        pointerY = message.GetFloat(0);
+        pointerYLeft = message.GetFloat(0);
 
     }
 
-    void OnReceiveSpeedX(OscMessage message)
+    void OnReceivespeedXLeft(OscMessage message)
     {
-        speedX = message.GetFloat(0);
+        speedXLeft = message.GetFloat(0);
     }
 
-    void OnReceiveSpeedY(OscMessage message)
+    void OnReceivespeedYLeft(OscMessage message)
     {
-        speedY = message.GetFloat(0);
+        speedYLeft = message.GetFloat(0);
     }
 
-    void SetPointerPosition()
+    void SetPointerPositionLeft()
     {
-        ObjectGrabberController ogc;
-        cursorTransform.position = new Vector3(
-           canvasTransform.rect.width * pointerX,
-           canvasTransform.rect.height * pointerY
+        ObjectGrabberControllerLeft ogc;
+        cursorTransformLeft.position = new Vector3(
+           canvasTransformLeft.rect.width * pointerXLeft,
+           canvasTransformLeft.rect.height * pointerYLeft
             );
 
 
 
-        if (IsObjectGrabberSet(out ogc))
-            ogc.updateGrabberWithPosition(cursorTransform.position, new Vector3(speedX,speedY));
+        if (IsObjectGrabberLeftSet(out ogc))
+            ogc.updateGrabberWithPosition(cursorTransformLeft.position, new Vector3(speedXLeft,speedYLeft));
+
+
+    }
+
+    void OnReceiveHandStatusRight(OscMessage message)
+    {
+        ObjectGrabberControllerRight ogc;
+        float handStatus = message.GetFloat(0);
+        if (IsObjectGrabberRightSet(out ogc))
+        {
+            ogc.setGrabState(handStatus == 1);
+            cursorTransformRight.gameObject.GetComponent<Image>().enabled = handStatus == 0 || ogc.currentSelectedObject == null;
+        }
+    }
+
+    bool IsObjectGrabberRightSet(out ObjectGrabberControllerRight refOGC)
+    {
+        refOGC = GetComponent<ObjectGrabberControllerRight>();
+        return refOGC != null;
+    }
+
+    void OnReceivepointerXRight(OscMessage message)
+    {
+        pointerXRight = message.GetFloat(0);
+        Debug.Log(pointerXRight);
+    }
+
+    void OnReceivepointerYRight(OscMessage message)
+    {
+        pointerYRight = message.GetFloat(0);
+        Debug.Log(pointerYRight);
+
+    }
+
+    void OnReceivespeedXRight(OscMessage message)
+    {
+        speedXRight = message.GetFloat(0);
+    }
+
+    void OnReceivespeedYRight(OscMessage message)
+    {
+        speedYRight = message.GetFloat(0);
+    }
+
+    void SetPointerPositionRight()
+    {
+        ObjectGrabberControllerRight ogc;
+        cursorTransformRight.position = new Vector3(
+           canvasTransformRight.rect.width * pointerXRight,
+           canvasTransformRight.rect.height * pointerYRight
+            );
+
+
+
+        if (IsObjectGrabberRightSet(out ogc))
+            ogc.updateGrabberWithPosition(cursorTransformRight.position, new Vector3(speedXRight, speedYRight));
 
 
     }
