@@ -54,18 +54,11 @@ public class ObjectGrabberController : MonoBehaviour
                 {
                     rigidbody.useGravity = !isGrabbingState;
                 }
-
-
             }
-
-
 
         }
 
-
         currentThrowForce = minForceThrow;
-
-
     }
 
     private void updateLastPos(Vector3 position)
@@ -73,25 +66,23 @@ public class ObjectGrabberController : MonoBehaviour
         cursorLastPosition = position;
     }
 
-
-
-    private Vector3 calculateForceMoveObjectFactor(Vector3 position)
+    private Vector3 calculateForceMoveObjectFactor(Vector3 speedFactors)
     {
-        Vector3 objectMoveForce = position / Time.deltaTime;
-        objectMoveForce.Normalize();
+        Vector3 objectMoveForce = speedFactors;
+        speedFactors.Normalize();
         objectMoveForce *= currentThrowForce;
         Debug.Log(objectMoveForce);
         return objectMoveForce;
     }
 
-    public void updateGrabberWithPosition(Vector3 position)
+    public void updateGrabberWithPosition(Vector3 position, Vector3 directionnalSpeeds)
     {
         Ray ray = Camera.main.ScreenPointToRay(position);
         RaycastHit hitInfo;
 
         if (isGrabbing)
         {
-            Vector3 moveForce = calculateForceMoveObjectFactor(position);
+            Vector3 moveForce = calculateForceMoveObjectFactor(directionnalSpeeds);
             incrementForceOnThrow();
             currentSelectedObject.GetComponent<Rigidbody>().AddForce(moveForce);
            

@@ -8,7 +8,7 @@ public class OscCursorController : MonoBehaviour
 
 
     public OSC osc;
-    public float pointerX, pointerY;
+    public float pointerX, pointerY, speedX, speedY;
     public RectTransform cursorTransform;
     public RectTransform canvasTransform;
 
@@ -20,8 +20,12 @@ public class OscCursorController : MonoBehaviour
 
         osc.SetAddressHandler("/pointerX", OnReceivePointerX);
         osc.SetAddressHandler("/pointerY", OnReceivePointerY);
+        osc.SetAddressHandler("/speedX", OnReceiveSpeedX);
+        osc.SetAddressHandler("/speedY", OnReceiveSpeedY);
+        osc.SetAddressHandler("/pointerY", OnReceivePointerY);
         osc.SetAddressHandler("/hand_closed", OnReceiveHandStatus);
         osc.SetAddressHandler("/stand_sit", OnBodyStanceChange);
+
     }
 
     // Update is called once per frame
@@ -77,6 +81,16 @@ public class OscCursorController : MonoBehaviour
 
     }
 
+    void OnReceiveSpeedX(OscMessage message)
+    {
+        speedX = message.GetFloat(0);
+    }
+
+    void OnReceiveSpeedY(OscMessage message)
+    {
+        speedY = message.GetFloat(0);
+    }
+
     void SetPointerPosition()
     {
         ObjectGrabberController ogc;
@@ -88,7 +102,7 @@ public class OscCursorController : MonoBehaviour
 
 
         if (IsObjectGrabberSet(out ogc))
-            ogc.updateGrabberWithPosition(cursorTransform.position);
+            ogc.updateGrabberWithPosition(cursorTransform.position, new Vector3(speedX,speedY));
 
 
     }
