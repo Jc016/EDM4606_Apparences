@@ -12,7 +12,7 @@ public class SceneManagement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene("titleScreen", LoadSceneMode.Additive);
         Invoke("LoadRoom", 7);
     }
 	
@@ -31,8 +31,14 @@ public class SceneManagement : MonoBehaviour {
     }
 
     private void RestartProject()
-    {   
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+        }
+
+        SceneManager.LoadScene(0, LoadSceneMode.Additive);
     }
 
 

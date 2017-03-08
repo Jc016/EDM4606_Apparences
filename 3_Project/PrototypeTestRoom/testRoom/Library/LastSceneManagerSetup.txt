@@ -1,10 +1,10 @@
 sceneSetups:
 - path: Assets/SceneLoader.unity
-  isLoaded: 0
-  isActive: 0
+  isLoaded: 1
+  isActive: 1
 - path: Assets/titleScreen.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/room.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
