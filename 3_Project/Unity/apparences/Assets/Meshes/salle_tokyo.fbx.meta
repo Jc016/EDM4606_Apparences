@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: 04baab7b63758b04aa4b23d1410e32ed
+timeCreated: 1488307649
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Area
+    100002: Box007
+    100004: Camera
+    100006: Circle006
+    100008: Cube_Cube.001
+    100010: cup.001
+    100012: Cylinder03.002
+    100014: JarBlanca
+    100016: JarBlanca01
+    100018: JarNegra
+    100020: JarNegra01
+    100022: obj0
+    100024: obj0.001
+    100026: obj1
+    100028: Plane
+    100030: Plane.001
+    100032: Plane.002
+    100034: Plane.003
+    100036: Plane.004
+    100038: Plane.005
+    100040: Plane01
+    100042: plate.001
+    100044: roche bobo
+    100046: roche_bobois_furtif_desk
+    100048: //RootNode
+    100050: spoon.001
+    100052: Top
+    100054: Vase_01.001
+    400000: Area
+    400002: Box007
+    400004: Camera
+    400006: Circle006
+    400008: Cube_Cube.001
+    400010: cup.001
+    400012: Cylinder03.002
+    400014: JarBlanca
+    400016: JarBlanca01
+    400018: JarNegra
+    400020: JarNegra01
+    400022: obj0
+    400024: obj0.001
+    400026: obj1
+    400028: Plane
+    400030: Plane.001
+    400032: Plane.002
+    400034: Plane.003
+    400036: Plane.004
+    400038: Plane.005
+    400040: Plane01
+    400042: plate.001
+    400044: roche bobo
+    400046: roche_bobois_furtif_desk
+    400048: //RootNode
+    400050: spoon.001
+    400052: Top
+    400054: Vase_01.001
+    2300000: Box007
+    2300002: Circle006
+    2300004: Cube_Cube.001
+    2300006: cup.001
+    2300008: Cylinder03.002
+    2300010: JarBlanca
+    2300012: JarBlanca01
+    2300014: JarNegra
+    2300016: JarNegra01
+    2300018: obj0
+    2300020: obj0.001
+    2300022: obj1
+    2300024: Plane
+    2300026: Plane.001
+    2300028: Plane.002
+    2300030: Plane.003
+    2300032: Plane.004
+    2300034: Plane.005
+    2300036: Plane01
+    2300038: plate.001
+    2300040: roche bobo
+    2300042: roche_bobois_furtif_desk
+    2300044: spoon.001
+    2300046: Top
+    2300048: Vase_01.001
+    3300000: Box007
+    3300002: Circle006
+    3300004: Cube_Cube.001
+    3300006: cup.001
+    3300008: Cylinder03.002
+    3300010: JarBlanca
+    3300012: JarBlanca01
+    3300014: JarNegra
+    3300016: JarNegra01
+    3300018: obj0
+    3300020: obj0.001
+    3300022: obj1
+    3300024: Plane
+    3300026: Plane.001
+    3300028: Plane.002
+    3300030: Plane.003
+    3300032: Plane.004
+    3300034: Plane.005
+    3300036: Plane01
+    3300038: plate.001
+    3300040: roche bobo
+    3300042: roche_bobois_furtif_desk
+    3300044: spoon.001
+    3300046: Top
+    3300048: Vase_01.001
+    4300000: JarNegra
+    4300002: JarBlanca01
+    4300004: JarNegra01
+    4300006: JarBlanca
+    4300008: Top
+    4300010: Cylinder03.002
+    4300012: Cube_Cube.001
+    4300014: Plane01
+    4300016: obj1
+    4300018: obj0.001
+    4300020: Circle006
+    4300022: Box007
+    4300024: obj0
+    4300026: roche bobo
+    4300028: roche_bobois_furtif_desk
+    4300030: Plane.005
+    4300032: cup.001
+    4300034: spoon.001
+    4300036: plate.001
+    4300038: Plane.004
+    4300040: Plane.003
+    4300042: Plane.002
+    4300044: Plane.001
+    4300046: Plane
+    4300048: Vase_01.001
+    7400000: Circle006|Box007|Take 001|BaseLayer
+    7400002: Circle006|Circle006|Take 001|BaseLayer
+    7400004: Circle006|Line027|Take 001|BaseLayer
+    7400006: Circle006|Line028|Take 001|BaseLayer
+    7400008: Circle006|Line029|Take 001|BaseLayer
+    7400010: Circle006|Line030|Take 001|BaseLayer
+    7400012: Circle006|Line031|Take 001|BaseLayer
+    7400014: Circle006|Line032|Take 001|BaseLayer
+    7400016: Circle006|Line033|Take 001|BaseLayer
+    7400018: Circle006|Line034|Take 001|BaseLayer
+    7400020: Circle006|Line035|Take 001|BaseLayer
+    7400022: Circle006|Line036|Take 001|BaseLayer
+    7400024: Circle006|Rectangle1|Take 001|BaseLayer
+    7400026: Circle006|Sphere001|Take 001|BaseLayer
+    7400028: Circle006|Sphere002|Take 001|BaseLayer
+    7400030: Circle006|Sphere003|Take 001|BaseLayer
+    7400032: Circle006|Sphere004|Take 001|BaseLayer
+    7400034: Circle006|Sphere005|Take 001|BaseLayer
+    7400036: Box007|Box007|Take 001|BaseLayer
+    7400038: Box007|Circle006|Take 001|BaseLayer
+    7400040: Box007|Line027|Take 001|BaseLayer
+    7400042: Box007|Line028|Take 001|BaseLayer
+    7400044: Box007|Line029|Take 001|BaseLayer
+    7400046: Box007|Line030|Take 001|BaseLayer
+    7400048: Box007|Line031|Take 001|BaseLayer
+    7400050: Box007|Line032|Take 001|BaseLayer
+    7400052: Box007|Line033|Take 001|BaseLayer
+    7400054: Box007|Line034|Take 001|BaseLayer
+    7400056: Box007|Line035|Take 001|BaseLayer
+    7400058: Box007|Line036|Take 001|BaseLayer
+    7400060: Box007|Rectangle1|Take 001|BaseLayer
+    7400062: Box007|Sphere001|Take 001|BaseLayer
+    7400064: Box007|Sphere002|Take 001|BaseLayer
+    7400066: Box007|Sphere003|Take 001|BaseLayer
+    7400068: Box007|Sphere004|Take 001|BaseLayer
+    7400070: Box007|Sphere005|Take 001|BaseLayer
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
