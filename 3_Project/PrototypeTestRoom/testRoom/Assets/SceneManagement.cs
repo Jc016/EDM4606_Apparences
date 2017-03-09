@@ -5,47 +5,44 @@ using UnityEngine.SceneManagement;
 using System.Timers;
 
 public class SceneManagement : MonoBehaviour {
-    Scene[] Scenes;
-    public enum SceneNames {Intro,Main,Void};
     private Timer projectTimer;
 
 
     // Use this for initialization
     void Start () {
-        SceneManager.LoadScene("titleScreen", LoadSceneMode.Additive);
-        Invoke("LoadRoom", 7);
+        Scene currentScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+        SceneManager.SetActiveScene(currentScene);
     }
 	
 	// Update is called once per frame
 	void Update () {
       if (Input.GetKeyDown("space"))
       {
-            RestartProject();
+            StartCoroutine(loadTitle());
+      }
+      else if(Input.GetKeyDown("s"))
+      {
+         
       }
     }
 
-    public void LoadScene(string sceneName)
+    public IEnumerator LoadScene(string sceneName)
     {
-        SceneManager.UnloadSceneAsync(1);
-        SceneManager.LoadScene(2,LoadSceneMode.Additive);
+        yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        Scene currentScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+        SceneManager.SetActiveScene(currentScene);
     }
 
-    private void RestartProject()
+  
+
+ 
+
+    private IEnumerator loadTitle()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-
-        }
-
-        SceneManager.LoadScene(0, LoadSceneMode.Additive);
-    }
-
-
-
-    private void LoadRoom()
-    {
-        LoadScene("room");
+        StartCoroutine(LoadScene("titleScreen"));
+        yield return new WaitForSeconds(7.0f);
+       StartCoroutine(LoadScene("room"));
     }
 
     
