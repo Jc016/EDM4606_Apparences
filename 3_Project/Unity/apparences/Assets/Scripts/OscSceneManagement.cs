@@ -10,7 +10,7 @@ public class OscSceneManagement : MonoBehaviour {
     void Start()
     {
         oscTouch.SetAddressHandler("/playerPresence", OnReceivePlayerPresence);
-        oscTouch.SetAddressHandler("/END", OnReceiveEnd);
+        oscMax.SetAddressHandler("/END", OnReceiveEnd);
     }
 
     // Update is called once per frame

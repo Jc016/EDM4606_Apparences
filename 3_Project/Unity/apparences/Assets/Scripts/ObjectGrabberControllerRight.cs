@@ -6,7 +6,7 @@ public class ObjectGrabberControllerRight : MonoBehaviour
 {
 
     public GameObject currentSelectedObject;
-    private bool isGrabbing;
+    public bool isGrabbing;
     public float minForceThrow = 1.0f;
     public float maxForceThrow = 4.0f;
     public float currentThrowForce = 1.0f;
@@ -16,6 +16,7 @@ public class ObjectGrabberControllerRight : MonoBehaviour
     private Vector3 cursorLastPosition = new Vector3();
     private Color objectInitialColor = Color.black;
     private bool colorChanged = false;
+    public OscCursorController oscCursorController;
 
     // Use this for initialization
     void Start()
@@ -27,7 +28,6 @@ public class ObjectGrabberControllerRight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
     }
 
     void incrementForceOnThrow()

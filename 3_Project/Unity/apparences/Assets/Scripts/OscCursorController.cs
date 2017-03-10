@@ -14,6 +14,9 @@ public class OscCursorController : MonoBehaviour
     public RectTransform canvasTransformLeft, canvasTransformRight;
     public RectTransform cursorTransformLeft;
     public RectTransform cursorTransformRight;
+    private bool leftGrab, rightGrab;
+    public GUITexture darkOverlay;
+    public LightAvatarController lightAvatarController;
 
     // Use this for initialization
     void Start()
@@ -23,6 +26,9 @@ public class OscCursorController : MonoBehaviour
 
         pointerXRight = 0;
         pointerYRight = 0;
+
+        leftGrab = false;
+        rightGrab = false;
 
         oscTouch.SetAddressHandler("/pointerX:left", OnReceivepointerXLeft);
         oscTouch.SetAddressHandler("/pointerY:left", OnReceivepointerYLeft);
@@ -40,6 +46,10 @@ public class OscCursorController : MonoBehaviour
 
         oscTouch.SetAddressHandler("/stand_sit", OnBodyStanceChange);
 
+        oscMax.SetAddressHandler("/LUMIERE", OnReceiveLumiere);
+
+        oscMax.SetAddressHandler("/PHRASE", OnReceivePhrase);
+
     }
 
     // Update is called once per frame
@@ -47,8 +57,23 @@ public class OscCursorController : MonoBehaviour
     {
         SetPointerPositionLeft();
         SetPointerPositionRight();
+
+        sendGrabBangtoMax(leftGrab || rightGrab ? 1 : 0);
+
+        GUI.color = new Color(0, 0, 0, 1f);
     }
 
+    void OnReceiveLumiere(OscMessage message)
+    {
+        darkOverlay.enabled = message.GetFloat(0) == 0;
+    }
+
+    void OnReceivePhrase(OscMessage message)
+    {
+        float amplitude = message.GetFloat(0);
+
+        lightAvatarController.UpdateLightAmplitude(amplitude);
+    }
     void OnBodyStanceChange(OscMessage message)
     {
         float bodyYSpeed = message.GetFloat(0);
@@ -75,6 +100,14 @@ public class OscCursorController : MonoBehaviour
             ogc.setGrabState(handStatus == 1);
             cursorTransformLeft.gameObject.GetComponent<Image>().enabled = handStatus == 0 || ogc.currentSelectedObject == null;
         }
+    }
+
+    public void sendGrabBangtoMax(int value)
+    {
+        OscMessage message = new OscMessage();
+        message.address = "/Objects";
+        message.values.Add(value);
+        oscMax.Send(message);
     }
 
     bool IsObjectGrabberLeftSet(out ObjectGrabberControllerLeft refOGC)
@@ -112,11 +145,11 @@ public class OscCursorController : MonoBehaviour
            canvasTransformLeft.rect.height * pointerYLeft
             );
 
-
-
         if (IsObjectGrabberLeftSet(out ogc))
-            ogc.updateGrabberWithPosition(cursorTransformLeft.position, new Vector3(speedXLeft,speedYLeft));
-
+        {
+            leftGrab = ogc.isGrabbing;
+            ogc.updateGrabberWithPosition(cursorTransformLeft.position, new Vector3(speedXLeft, speedYLeft));
+        }
 
     }
 
@@ -171,7 +204,13 @@ public class OscCursorController : MonoBehaviour
 
 
         if (IsObjectGrabberRightSet(out ogc))
+        {
+            rightGrab = ogc.isGrabbing;
             ogc.updateGrabberWithPosition(cursorTransformRight.position, new Vector3(speedXRight, speedYRight));
+        }
+            
+
+
 
 
     }
