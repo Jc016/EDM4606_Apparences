@@ -8,7 +8,7 @@ public class OscCursorController : MonoBehaviour
 {
 
 
-    public OSC osc;
+    public OSC oscTouch, oscMax;
     public float pointerXLeft, pointerYLeft, speedXLeft, speedYLeft;
     public float pointerXRight, pointerYRight, speedXRight, speedYRight;
     public RectTransform canvasTransformLeft, canvasTransformRight;
@@ -24,21 +24,21 @@ public class OscCursorController : MonoBehaviour
         pointerXRight = 0;
         pointerYRight = 0;
 
-        osc.SetAddressHandler("/pointerX:left", OnReceivepointerXLeft);
-        osc.SetAddressHandler("/pointerY:left", OnReceivepointerYLeft);
-        osc.SetAddressHandler("/speedX:left", OnReceivespeedXLeft);
-        osc.SetAddressHandler("/speedY:left", OnReceivespeedYLeft);
-        osc.SetAddressHandler("/pointerY:left", OnReceivepointerYLeft);
-        osc.SetAddressHandler("/hand_closed:left", OnReceiveHandStatusLeft);
+        oscTouch.SetAddressHandler("/pointerX:left", OnReceivepointerXLeft);
+        oscTouch.SetAddressHandler("/pointerY:left", OnReceivepointerYLeft);
+        oscTouch.SetAddressHandler("/speedX:left", OnReceivespeedXLeft);
+        oscTouch.SetAddressHandler("/speedY:left", OnReceivespeedYLeft);
+        oscTouch.SetAddressHandler("/pointerY:left", OnReceivepointerYLeft);
+        oscTouch.SetAddressHandler("/hand_closed:left", OnReceiveHandStatusLeft);
 
-        osc.SetAddressHandler("/pointerX:right", OnReceivepointerXRight);
-        osc.SetAddressHandler("/pointerY:right", OnReceivepointerYRight);
-        osc.SetAddressHandler("/speedX:right", OnReceivespeedXRight);
-        osc.SetAddressHandler("/speedY:right", OnReceivespeedYRight);
-        osc.SetAddressHandler("/pointerY:right", OnReceivepointerYRight);
-        osc.SetAddressHandler("/hand_closed:right", OnReceiveHandStatusRight);
+        oscTouch.SetAddressHandler("/pointerX:right", OnReceivepointerXRight);
+        oscTouch.SetAddressHandler("/pointerY:right", OnReceivepointerYRight);
+        oscTouch.SetAddressHandler("/speedX:right", OnReceivespeedXRight);
+        oscTouch.SetAddressHandler("/speedY:right", OnReceivespeedYRight);
+        oscTouch.SetAddressHandler("/pointerY:right", OnReceivepointerYRight);
+        oscTouch.SetAddressHandler("/hand_closed:right", OnReceiveHandStatusRight);
 
-        osc.SetAddressHandler("/stand_sit", OnBodyStanceChange);
+        oscTouch.SetAddressHandler("/stand_sit", OnBodyStanceChange);
 
     }
 
