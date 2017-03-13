@@ -24,17 +24,15 @@ public class LightAvatarController : MonoBehaviour {
         randomGenerator = new Random();
         light = GetComponent<Light>();
         lensFlare = GetComponent<LensFlare>();
+        soundAmplitude = 0;
     }
 	
 	// Update is called once per frame
 	void Update() {
         positionY = parentGameObject.transform.position.y;
-
-
-        boolAmp = (Mathf.Abs(soundAmplitude) < cameraToggleThreshold && parentGameObject.transform.position.y > cameraThreshold);
-        boolPos = parentGameObject.transform.position.y > cameraThreshold;
-        mainCamera.enabled = (Mathf.Abs(soundAmplitude) < cameraToggleThreshold && parentGameObject.transform.position.y > cameraThreshold);
-
+        boolAmp = soundAmplitude > cameraToggleThreshold;
+        Debug.Log(boolAmp);
+        mainCamera.enabled = !boolAmp;
     }
 
     public void UpdateLightAmplitude(float amplitude)
@@ -42,7 +40,5 @@ public class LightAvatarController : MonoBehaviour {
         light.range = Mathf.Abs(amplitude) * maxIntensity;
         lensFlare.brightness = Mathf.Abs(amplitude) * maxFlare;
         soundAmplitude = amplitude;
-
-      
     }
 }
