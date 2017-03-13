@@ -29,10 +29,6 @@ public class LightAvatarController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-        positionY = parentGameObject.transform.position.y;
-        boolAmp = soundAmplitude > cameraToggleThreshold;
-        Debug.Log(boolAmp);
-        mainCamera.enabled = !boolAmp;
     }
 
     public void UpdateLightAmplitude(float amplitude)

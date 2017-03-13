@@ -77,18 +77,22 @@ public class OscCursorController : MonoBehaviour
     void OnBodyStanceChange(OscMessage message)
     {
         float bodyYSpeed = message.GetFloat(0);
-        if (bodyYSpeed == 0)
+        if (Camera.main.GetComponent<MotionBlur>() != null)
         {
-            Physics.gravity = new Vector3(0, 0.4f, 0);
-            Camera.main.GetComponent<MotionBlur>().blurAmount = 1.0f;
+            if (bodyYSpeed == 0)
+            {
+                Physics.gravity = new Vector3(0, 0.4f, 0);
+                Camera.main.GetComponent<MotionBlur>().blurAmount = 1.0f;
 
-        }
-        else
-        {
-            Physics.gravity = new Vector3(0, -40f, 0);
-            Camera.main.GetComponent<MotionBlur>().blurAmount = 0f;
+            }
+            else
+            {
+                Physics.gravity = new Vector3(0, -40f, 0);
+                Camera.main.GetComponent<MotionBlur>().blurAmount = 0f;
 
+            }
         }
+       
     }
 
     void OnReceiveHandStatusLeft(OscMessage message)
@@ -173,13 +177,11 @@ public class OscCursorController : MonoBehaviour
     void OnReceivepointerXRight(OscMessage message)
     {
         pointerXRight = message.GetFloat(0);
-        Debug.Log(pointerXRight);
     }
 
     void OnReceivepointerYRight(OscMessage message)
     {
         pointerYRight = message.GetFloat(0);
-        Debug.Log(pointerYRight);
 
     }
 
