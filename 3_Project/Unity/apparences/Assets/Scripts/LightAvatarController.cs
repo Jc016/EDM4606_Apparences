@@ -37,6 +37,7 @@ public class LightAvatarController : MonoBehaviour {
 
     public void UpdateLightAmplitude(float amplitude)
     {
+        amplitude = Mathf.Abs(Mathf.Clamp(amplitude, -60, 0)) / 60;
         light.range = Mathf.Abs(amplitude) * maxIntensity;
         lensFlare.brightness = Mathf.Abs(amplitude) * maxFlare;
         soundAmplitude = amplitude;

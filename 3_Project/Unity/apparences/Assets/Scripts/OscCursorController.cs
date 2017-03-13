@@ -85,7 +85,7 @@ public class OscCursorController : MonoBehaviour
         }
         else
         {
-            Physics.gravity = new Vector3(0, -9.8f, 0);
+            Physics.gravity = new Vector3(0, -40f, 0);
             Camera.main.GetComponent<MotionBlur>().blurAmount = 0f;
 
         }
